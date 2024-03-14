@@ -32,6 +32,16 @@ body {
     @apply bg-secondary;
     @apply rounded-md;
   }
+
+  .form-error{
+    @apply text-red-600;
+    @apply text-sm;
+  }
+  .form-button {
+    @apply transition-colors ease-out;
+    @apply bg-white;
+    @apply border-2;
+  }
 }
 
 @layer utilities {
