@@ -8,8 +8,14 @@
   
 }
 
+
+
 body {
    color: black;
+}
+
+@layer base {
+
 }
 
 @layer components {
@@ -31,12 +37,28 @@ body {
   .form-control {
     @apply bg-secondary;
     @apply rounded-md;
+    @apply transition-colors ease-out;
+    @apply border-solid border-2 border-transparent;
+    @apply outline outline-4 outline-transparent;
+    @apply px-1 py-2;
   }
 
   .form-error{
     @apply text-red-600;
     @apply text-sm;
   }
+
+  .form-control-error {
+    @apply border-red-600;
+    @apply focus:outline-red-400 outline outline-4;
+  }
+
+
+  .form-control-success {
+    @apply border-2 border-green-600;
+    @apply focus:outline-green-400 outline outline-4;
+  }
+
   .form-button {
     @apply transition-colors ease-out;
     @apply bg-white;

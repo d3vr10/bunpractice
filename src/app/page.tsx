@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { useForm } from "react-hook-form" 
 import PromptForm from "@/components/PromptForm";
-import promptGeneratorHeadingImage from "../../public/svgs/prompt_generator_heading.svg";
+import PromptGeneratorHeadingImage from "../../public/svgs/prompt_generator_heading.svg";
+import { useEffect } from "react";
 
 
 export default function PromptGenerator() {
@@ -10,7 +11,8 @@ export default function PromptGenerator() {
   return (
     <div className="flex flex-col">
       <div className="w-full">
-        <Image className="object-cover" src={promptGeneratorHeadingImage} alt="Imagen de encabezado del generador de prompts" />
+        <PromptGeneratorHeadingImage className="block w-full h-auto" />
+        {/* <Image className="object-cover" src={promptGeneratorHeadingImage} alt="Imagen de encabezado del generador de prompts" /> */}
       </div>
       <div className="py-4 px-3 -mt-3 bg-white rounded-md shadow-[0px_-5px_24px_0px_rgba(0,0,0,0.22)]">
         <div className="legend-box flex flex-row items-center justify-center gap-x-[35px] mb-[43px]">

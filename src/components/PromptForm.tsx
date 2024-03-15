@@ -10,13 +10,14 @@ import { Tiro_Devanagari_Sanskrit } from "next/font/google";
 import TaskArray from "@/components/TaskArray";
 import PromptTextField from "./PromptUI";
 import { error } from "console";
+import clsx from "clsx";
 
 
 
 
 
 export default function PromptForm() {
-    const { register, handleSubmit, control, getValues, setValue, trigger, formState: { errors }, watch } = useForm<zodSchemas.PromptDataSchemaType>({ 
+    const { register, handleSubmit, control, getValues, setValue, trigger, formState: { errors } } = useForm<zodSchemas.PromptDataSchemaType>({ 
         resolver: zodResolver(zodSchemas.PromptDataSchema),
         defaultValues: {
             
@@ -29,21 +30,30 @@ export default function PromptForm() {
     
     
     return (
-        <form action="" onSubmit={handleSubmit(onSubmit)} noValidate={true} className="lg:grid lg:grid-cols-2 lg:gap-x-[47px] lg:gap-y-[18px]">
+        <form action="" onSubmit={handleSubmit(onSubmit)} noValidate={true} className="sm:flex sm:flex-col lg:grid lg:grid-cols-2 lg:gap-x-[47px] lg:gap-y-[18px]">
             <div className="form-field">
                 <label htmlFor="role">Rol</label>
-                <input className="py-1 px-2 form-control" type="text" id="role" {...register("role")} />
+                <input className={clsx("form-control", {
+                    "form-control-success": !!!errors.role,
+                    "form-control-error": !!errors.role
+                })} type="text" id="role" {...register("role")} />
                 <div className="form-error">{errors.role && errors.role.message}</div>
             </div>
             <div className="form-field">
                 <label htmlFor="speciality-field">Especialidad</label>
-                <input className="py-1 px-2 form-control" type="text" id="speciality-field" {...register("specialityField")} />
+                <input className={clsx("form-control", {
+                    "form-control-success": !!!errors.specialityField,
+                    "form-control-error": !!errors.specialityField 
+                })} type="text" id="speciality-field" {...register("specialityField")} />
                 <div className="form-error">{errors.specialityField && errors.specialityField.message}</div>
             </div>
             <div className="form-field">
             <label htmlFor="preferred-language">Lenguaje</label>
 
-                <select className="py-1 px-2 form-control" id="preferredLanguage" defaultValue={"spanish"} {...register("preferredLanguage")}>
+                <select className={clsx("form-control", {
+                    "form-control-success": !!!errors.preferredLanguage,
+                    "form-control-error": !!errors.preferredLanguage 
+                })} id="preferredLanguage" defaultValue={"spanish"} {...register("preferredLanguage")}>
                     <option value="spanish" >Español</option>
                     <option value="english">Inglés</option>
                     <option value="french">Francés</option>
@@ -55,7 +65,10 @@ export default function PromptForm() {
             </div>
             <div className="form-field">
                 <label htmlFor="writing-style">Estilo de redacción</label>
-                <select  className="py-1 px-2 form-control" id="writing-style" {...register("writingStyle")}>
+                <select  className={clsx("form-control", {
+                    "form-control-success": !!!errors.writingStyle,
+                    "form-control-error": !!errors.writingStyle 
+                })} id="writing-style" {...register("writingStyle")}>
                     <option value="normal">Normal</option>
                     <option value="academic">Académico</option>
                     <option value="literary">Literario</option>
@@ -71,7 +84,10 @@ export default function PromptForm() {
             
             <div className="form-field">
                 <label htmlFor="communication-tone">Tono de Comunicación</label>
-                <select className="py-1 px-2 form-control" id="communication-tone" {...register("communicationTone")}>
+                <select className={clsx("form-control", {
+                    "form-control-success": !!!errors.communicationTone,
+                    "form-control-error": !!errors.communicationTone 
+                })} id="communication-tone" {...register("communicationTone")}>
                     <option value="normal">Normal</option>
                     <option value="formal">Formal</option>
                     <option value="informal">Informal</option>
@@ -86,7 +102,10 @@ export default function PromptForm() {
             </div>
             <div className="form-field">
                 <label htmlFor="response-format">Formato de Respuesta</label>
-                <select className="py-1 px-2 form-control" id="response-format" {...register("responseFormat")}>
+                <select className={clsx("form-control", {
+                    "form-control-success": !!!errors.responseFormat,
+                    "form-control-error": !!errors.responseFormat 
+                })} id="response-format" {...register("responseFormat")}>
                     <option value="normal-text">Texto Estándar</option>
                     <option value="table">Tabla(s)</option>
                     <option value="HTML">HTML</option>
@@ -98,7 +117,10 @@ export default function PromptForm() {
             
             <div className="form-field col-span-2">
                 <label htmlFor="context">Contexto</label>
-                <textarea className="py-1 px-2 form-control" id="context" cols={30} rows={10} {...register("context")}></textarea>
+                <textarea className={clsx("form-control", {
+                    "form-control-success": !!!errors.context,
+                    "form-control-error": !!errors.context 
+                })} id="context" cols={30} rows={10} {...register("context")}></textarea>
                 <div className="form-error">{errors.context && errors.context.message}</div>
             </div>
 

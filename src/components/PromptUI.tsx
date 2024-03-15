@@ -5,6 +5,7 @@ import { triggerAsyncId } from "async_hooks";
 import { NEXT_CACHE_REVALIDATE_TAG_TOKEN_HEADER } from "next/dist/lib/constants";
 import { useState } from "react"
 import { UseFormGetValues, UseFormRegister, UseFormSetValue, UseFormTrigger } from "react-hook-form";
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function PromptTextField(
     { setValue, getValues, register, trigger }: {
@@ -16,23 +17,22 @@ export default function PromptTextField(
 ) {
 
     const copyToClipboard = async () => {
-        console.log(window)
         if (typeof window !== "undefined") {
-            console.log("HELLO IM WORKING")
-            await navigator.clipboard.writeText(getValues("promptText") || "Something has been copied")
+            await navigator.clipboard.writeText(getValues("promptText"))
+            toast("Copiado al portapapeles", { duration: 1500, icon: "✅" });
         }
     }
 
     return (
         <>
+
+
             <div className="form-field col-span-2">
                 <button className="form-button hover:bg-blue-600 hover:text-white border-blue-600 text-blue-600 w-auto h-auto self-start inline-block px-4 py-2 rounded-md" onClick={async () => {
                     const isValid = await trigger();
-                    if (true) {
+                    if (isValid) {
                         const formValues = getValues();
                         const taskArrayValues = getValues("taskSet.0.content");
-                        console.log("TASK ARRAY=>" + JSON.stringify(taskArrayValues));
-                        console.log("FormVALUES=> " + JSON.stringify(formValues));
                         const text = `
                             Quiero que actúes como un ${formValues.role}${(formValues.specialityField) ? ` especializado en: ${formValues.specialityField}` : ""}.
                             Por favor responde totalmente en el lenguaje Español siguiendo las instrucciones a continuación:
@@ -43,12 +43,13 @@ export default function PromptTextField(
                             Utiliza un estilo de redacción: ${formValues.writingStyle}
                         `.replace(/^[\s\t]+/mg, '');
                         setValue("promptText", text);
-                    }
-
+                        toast("Compilado con exito", { duration: 1500, icon: "⚙️" })
+                    } else toast("Error al compilar", { duration: 1500, icon: "❌" })
                 }}>Compilar</button>
                 <label htmlFor="prompt-text">Prompt</label>
-                <textarea id="prompt-text" className="resize-none form-control" cols={30} rows={10} disabled {...register("promptText")}></textarea>
+                <textarea id="prompt-text" className="resize-none form-control px-2 py-1" cols={30} rows={10} disabled {...register("promptText")}></textarea>
                 <button className="form-button self-end hover:bg-green-700 hover:text-white px-4 py-2 inline-block w-auto h-auto rounded-md text-green-700 border-green-700" onClick={copyToClipboard}>Copiar</button>
+                <Toaster />
             </div>
 
         </>
