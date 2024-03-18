@@ -9,7 +9,6 @@ import trashBinImage from "../../public/images/trash_bin.svg"
 import { Tiro_Devanagari_Sanskrit } from "next/font/google";
 import TaskArray from "@/components/TaskArray";
 import PromptTextField from "./PromptUI";
-import { error } from "console";
 import clsx from "clsx";
 
 
