@@ -9,7 +9,7 @@ export default function PromptGenerator() {
   
   
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col sm:hidden lg:block">
       <div className="w-full">
         <PromptGeneratorHeadingImage className="block w-full h-auto" />
         {/* <Image className="object-cover" src={promptGeneratorHeadingImage} alt="Imagen de encabezado del generador de prompts" /> */}
