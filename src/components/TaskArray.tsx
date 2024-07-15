@@ -12,11 +12,10 @@ export default function TaskArray({register, errors, control, getValues}: {regis
 
     return (
         <>
-            <button className="bg-yellow-500 h-[68px] w-[68px] col-span-2 rounded-[50%] relative lg:block lg:ml-auto lg:mr-auto" onClick={() => {
+            <button className="w-fit border-green-600 border-solid border-2 text-green-600 hover:bg-green-600 hover:text-white transition-colors ease-out rounded-xl px-4 py-2" onClick={() => {
                 append({ content: "" });
             }}>
-                <span className="w-[32px] h-[6px] bg-black absolute block -translate-x-1/2 left-1/2 top-1/2 -translate-y-1/2" ></span>
-                <span className="w-[32px] h-[6px] bg-black absolute block -translate-x-1/2 left-1/2 top-1/2 -translate-y-1/2 rotate-90" ></span>
+                Añadir tarea
             </button>
             
             {!!fields.length && fields.map((task, index) => (

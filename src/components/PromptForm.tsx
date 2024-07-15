@@ -19,7 +19,9 @@ export default function PromptForm() {
     const { register, handleSubmit, control, getValues, setValue, trigger, formState: { errors } } = useForm<zodSchemas.PromptDataSchemaType>({ 
         resolver: zodResolver(zodSchemas.PromptDataSchema),
         defaultValues: {
-            
+            taskSet: [{
+                content: ""
+            }]
         }
     });
     const onSubmit = (data: zodSchemas.PromptDataSchemaType) => {
@@ -29,7 +31,7 @@ export default function PromptForm() {
     
     
     return (
-        <form action="" onSubmit={handleSubmit(onSubmit)} noValidate={true} className="sm:flex sm:flex-col lg:grid lg:grid-cols-2 lg:gap-x-[47px] lg:gap-y-[18px]">
+        <form action="" onSubmit={handleSubmit(onSubmit)} noValidate={true} className="flex flex-col lg:gap-x-[47px] lg:gap-y-[18px]">
             <div className="form-field">
                 <label htmlFor="role">Rol</label>
                 <input className={clsx("form-control", {
