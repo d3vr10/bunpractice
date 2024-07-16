@@ -10,17 +10,19 @@ import { Tiro_Devanagari_Sanskrit } from "next/font/google";
 import TaskArray from "@/components/TaskArray";
 import PromptTextField from "./PromptUI";
 import clsx from "clsx";
-
+import { useEffect } from "react";
 
 
 
 
 export default function PromptForm() {
-    const { register, handleSubmit, control, getValues, setValue, trigger, formState: { errors } } = useForm<zodSchemas.PromptDataSchemaType>({ 
+    const { register, handleSubmit, control, getValues, setValue, trigger, formState: { errors, touchedFields, focused } } = useForm<zodSchemas.PromptDataSchemaType>({ 
         resolver: zodResolver(zodSchemas.PromptDataSchema),
+        mode: "all",
         defaultValues: {
             taskSet: [{
-                content: ""
+                content: "",
+                example: "",
             }]
         }
     });
@@ -28,17 +30,34 @@ export default function PromptForm() {
         
     }
 
-    
+    useEffect(() => {
+        trigger();
+        return () => {
+            
+        }
+    }, [])
     
     return (
-        <form action="" onSubmit={handleSubmit(onSubmit)} noValidate={true} className="flex flex-col lg:gap-x-[47px] lg:gap-y-[18px]">
+        <form action="" onSubmit={handleSubmit(onSubmit)} noValidate={true} className="flex flex-col">
+            
+            <TaskArray getValues={getValues} register={register} control={control} errors={errors} />
+            
+            <div className="form-field col-span-2 mt-10">
+                <label htmlFor="context">Contexto</label>
+                <textarea className={clsx("form-control", {
+                    "form-control-success": !!!errors.context,
+                    "form-control-error": !!errors.context 
+                })} id="context" cols={30} rows={10} {...register("context")}></textarea>
+                {errors.context && touchedFields.context && <div className="form-error">{errors.context.message}</div>}
+            </div>
+            
             <div className="form-field">
                 <label htmlFor="role">Rol</label>
                 <input className={clsx("form-control", {
                     "form-control-success": !!!errors.role,
                     "form-control-error": !!errors.role
                 })} type="text" id="role" {...register("role")} />
-                <div className="form-error">{errors.role && errors.role.message}</div>
+                {errors.role && touchedFields.role && <div className="form-error">{errors.role.message}</div>}
             </div>
             <div className="form-field">
                 <label htmlFor="speciality-field">Especialidad</label>
@@ -46,7 +65,7 @@ export default function PromptForm() {
                     "form-control-success": !!!errors.specialityField,
                     "form-control-error": !!errors.specialityField 
                 })} type="text" id="speciality-field" {...register("specialityField")} />
-                <div className="form-error">{errors.specialityField && errors.specialityField.message}</div>
+                {errors.specialityField && touchedFields.speciality && <div className="form-error">{errors.specialityField.message}</div>}
             </div>
             <div className="form-field">
             <label htmlFor="preferred-language">Lenguaje</label>
@@ -61,7 +80,7 @@ export default function PromptForm() {
                     <option value="deutsch">Alemán</option>
                     <option value="italian">Italiano</option>
                 </select>
-                <div className="form-error">{errors.preferredLanguage && errors.preferredLanguage.message}</div>
+                {errors.preferredLanguage && touchedFields.preferredLanguage && <div className="form-error">{errors.preferredLanguage.message}</div>}
 
             </div>
             <div className="form-field">
@@ -79,7 +98,7 @@ export default function PromptForm() {
                     <option value="informal">Informal</option>
                     <option value="emotional">Emocional</option>
                 </select>
-                <div className="form-error">{errors.writingStyle && errors.writingStyle.message}</div>
+                {errors.writingStyle && touchedFields.writingStyle && <div className="form-error">{errors.writingStyle.message}</div>}
             </div>
             
             
@@ -98,7 +117,7 @@ export default function PromptForm() {
                     <option value="explanatory">Explicativo</option>
                     <option value="emotional">Emocional</option>
                 </select>
-                <div className="form-error">{errors.communicationTone && errors.communicationTone.message}</div>
+                {errors.communicationTone && touchedFields.communicationTone && <div className="form-error">{errors.communicationTone.message}</div>}
 
             </div>
             <div className="form-field">
@@ -113,19 +132,12 @@ export default function PromptForm() {
                     <option value="instruction-manual">Manual de instrucciones</option>
                     <option value="syllabus">Temario</option>
                 </select>
-                <div className="form-error">{errors.responseFormat && errors.responseFormat.message}</div>
+                {errors.responseFormat && touchedFields.responseFormat && <div className="form-error"> {errors.responseFormat.message}</div>}
             </div>
             
-            <div className="form-field col-span-2">
-                <label htmlFor="context">Contexto</label>
-                <textarea className={clsx("form-control", {
-                    "form-control-success": !!!errors.context,
-                    "form-control-error": !!errors.context 
-                })} id="context" cols={30} rows={10} {...register("context")}></textarea>
-                <div className="form-error">{errors.context && errors.context.message}</div>
-            </div>
+            
 
-            <TaskArray getValues={getValues} register={register} control={control} errors={errors} />
+            
             <PromptTextField setValue={setValue} trigger={trigger} getValues={getValues} register={register} />
             
         </form>

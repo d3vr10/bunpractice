@@ -1,7 +1,8 @@
 import { string, z } from "zod";
 
 const taskSchema = z.object({
-    content: z.string().min(1, "Debes especificar la tarea")
+    content: z.string().min(1, "Debes especificar la tarea"),
+    example: z.string()
 })
 export const PromptDataSchema = z.object({
     role: z.string().min(1, "Debes definir el rol de la IA"),

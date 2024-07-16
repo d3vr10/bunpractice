@@ -29,34 +29,43 @@ body {
 
   
   .form-field {
-    @apply flex;
-    @apply flex-col;
-    @apply gap-y-2;
+    @apply flex flex-col px-3 py-6 rounded-lg;
+  }
+  
+  .form-field:hover {
+    @apply bg-slate-100;
+  }
+  
+  .form-field label {
+    @apply uppercase text-sm pb-1 text-[0.75em];
   }
 
   .form-control {
-    @apply bg-secondary;
+    /* @apply bg-secondary; */
     @apply rounded-md;
     @apply transition-colors ease-out;
-    @apply border-solid border-2 border-transparent;
+    @apply border-solid border border-transparent;
     @apply outline outline-4 outline-transparent;
-    @apply px-1 py-2;
+    @apply p-2;
+  }
+  
+  .form-field:has(select) select {
+    @apply h-10 bg-transparent;
   }
 
   .form-error{
-    @apply text-red-600;
-    @apply text-sm;
+    @apply bg-red-600 text-xs px-2 py-1 rounded text-white w-fit mt-1;
   }
 
   .form-control-error {
     @apply border-red-600;
-    @apply focus:outline-red-400 outline outline-4;
+    @apply focus:outline-red-400 outline outline-2;
   }
 
 
   .form-control-success {
-    @apply border-2 border-green-600;
-    @apply focus:outline-green-400 outline outline-4;
+    @apply border border-green-600;
+    @apply focus:outline-green-400 outline outline-2;
   }
 
   .form-button {
