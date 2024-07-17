@@ -13,7 +13,7 @@ export default function PromptGenerator() {
       <div className="w-full">
         <header className="h-[150px] mb-6 flex flex-col justify-center items-center">
           <Image src="/logo_crespf.jpg" alt={"Logotipo CRESPF"} width={100} height={100} className="my-3" />
-          <h1 className="uppercase font-bold">generador de prompts educativos del CRESPF</h1>  
+          <h1 className="text-center uppercase font-bold">generador de prompts educativos del CRESPF</h1>  
         </header>
         {/* <PromptGeneratorHeadingImage className="block w-full h-auto" /> */}
         {/* <Image className="object-cover" src={promptGeneratorHeadingImage} alt="Imagen de encabezado del generador de prompts" /> */}
