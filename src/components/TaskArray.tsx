@@ -35,7 +35,7 @@ export default function TaskArray({register, errors, control, getValues}: {regis
             ))}
             
             <button className="w-fit border-green-600 border-solid border-2 text-green-600 hover:bg-green-600 hover:text-white transition-colors ease-out rounded-md px-3 py-1 mt-6" onClick={() => {
-                append({ content: "" });
+                append({ content: "", example: "" });
             }}>Añadir tarea</button>
         </>
     );

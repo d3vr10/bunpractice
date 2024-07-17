@@ -1,10 +1,10 @@
-FROM node:lts
+FROM node:latest AS builder
 WORKDIR /app
-COPY ./package.json .
-RUN npm i -g bun \
-	&& bun install
-COPY . . 
+COPY . .
+RUN npm install
+RUN npm run build
+
+FROM node:latest
+COPY --from=builder /app/. .
 EXPOSE 3000
-ENTRYPOINT ["bun", "run"]
-CMD ["dev -H 0.0.0.0]
-	
+CMD ["npm", "run", "start"]

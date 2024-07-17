@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useForm } from "react-hook-form" 
 import PromptForm from "@/components/PromptForm";
 import PromptGeneratorHeadingImage from "../../public/svgs/prompt_generator_heading.svg";
-import { useEffect } from "react";
+
 
 
 export default function PromptGenerator() {
@@ -12,7 +12,7 @@ export default function PromptGenerator() {
     <div className="flex flex-col lg:w-1/2 w-full">
       <div className="w-full">
         <header className="h-[150px] mb-6 flex flex-col justify-center items-center">
-          <Image src="/logo_crespf.jpg" width={100} height={100} className="my-3" />
+          <Image src="/logo_crespf.jpg" alt={"Logotipo CRESPF"} width={100} height={100} className="my-3" />
           <h1 className="uppercase font-bold">generador de prompts educativos del CRESPF</h1>  
         </header>
         {/* <PromptGeneratorHeadingImage className="block w-full h-auto" /> */}

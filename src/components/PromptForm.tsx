@@ -16,7 +16,7 @@ import { useEffect } from "react";
 
 
 export default function PromptForm() {
-    const { register, handleSubmit, control, getValues, setValue, trigger, formState: { errors, touchedFields, focused } } = useForm<zodSchemas.PromptDataSchemaType>({ 
+    const { register, handleSubmit, control, getValues, setValue, trigger, formState: { errors, touchedFields } } = useForm<zodSchemas.PromptDataSchemaType>({
         resolver: zodResolver(zodSchemas.PromptDataSchema),
         mode: "all",
         defaultValues: {
@@ -65,7 +65,7 @@ export default function PromptForm() {
                     "form-control-success": !!!errors.specialityField,
                     "form-control-error": !!errors.specialityField 
                 })} type="text" id="speciality-field" {...register("specialityField")} />
-                {errors.specialityField && touchedFields.speciality && <div className="form-error">{errors.specialityField.message}</div>}
+                {errors.specialityField && touchedFields.specialityField && <div className="form-error">{errors.specialityField.message}</div>}
             </div>
             <div className="form-field">
             <label htmlFor="preferred-language">Lenguaje</label>
