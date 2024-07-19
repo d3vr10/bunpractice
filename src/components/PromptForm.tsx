@@ -16,7 +16,7 @@ import { useEffect } from "react";
 
 
 export default function PromptForm() {
-    const { register, handleSubmit, control, getValues, setValue, trigger, formState: { errors, touchedFields } } = useForm<zodSchemas.PromptDataSchemaType>({
+    const { register, unregister, handleSubmit, control, getValues, setValue, trigger, formState: { errors, touchedFields } } = useForm<zodSchemas.PromptDataSchemaType>({
         resolver: zodResolver(zodSchemas.PromptDataSchema),
         mode: "all",
         defaultValues: {
@@ -40,7 +40,7 @@ export default function PromptForm() {
     return (
         <form action="" onSubmit={handleSubmit(onSubmit)} noValidate={true} className="flex flex-col">
             
-            <TaskArray getValues={getValues} register={register} control={control} errors={errors} />
+            <TaskArray unregister={unregister} getValues={getValues} register={register} control={control} errors={errors} />
             
             <div className="form-field col-span-2 mt-10">
                 <label htmlFor="context">Contexto</label>

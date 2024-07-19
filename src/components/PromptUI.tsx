@@ -51,8 +51,8 @@ export default function PromptTextField(
                                     Utiliza un estilo de redacción: ${formValues.writingStyle}
                                 `.replace(/^[\s\t]+/mg, '');
                                 setValue("promptText", text);
-                                toast("Compilado con exito", { duration: 1500, icon: "⚙️" })
-                            } else toast("Error al compilar", { duration: 1500, icon: "❌" })
+                                toast("Generado con exito", { duration: 1500, icon: "⚙️" })
+                            } else toast("Error al generar. Revise su formulario por favor.", { duration: 1500, icon: "❌" })
                         }}>Generar</button>
                         <button className="!text-sm form-button self-end hover:bg-green-700 hover:text-white px-2 py-1 inline-block w-auto h-auto rounded-md text-green-700 border-green-700" onClick={copyToClipboard}>Copiar</button>
                     </div>
