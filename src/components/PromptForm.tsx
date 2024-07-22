@@ -40,7 +40,7 @@ export default function PromptForm() {
     return (
         <form action="" onSubmit={handleSubmit(onSubmit)} noValidate={true} className="flex flex-col">
             
-            <TaskArray unregister={unregister} getValues={getValues} register={register} control={control} errors={errors} />
+            
             
             <div className="form-field col-span-2 mt-10">
                 <label htmlFor="context">Contexto</label>
@@ -67,6 +67,9 @@ export default function PromptForm() {
                 })} type="text" id="speciality-field" {...register("specialityField")} />
                 {errors.specialityField && touchedFields.specialityField && <div className="form-error">{errors.specialityField.message}</div>}
             </div>
+
+            <TaskArray unregister={unregister} getValues={getValues} register={register} control={control} errors={errors} />
+
             <div className="form-field">
             <label htmlFor="preferred-language">Lenguaje</label>
 
