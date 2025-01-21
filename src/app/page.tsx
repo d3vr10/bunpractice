@@ -13,7 +13,7 @@ export default function PromptGenerator() {
       <div className="w-full">
         <header className="h-[150px] mb-6 flex flex-col justify-center items-center">
           <Image src="/logo-mined.jpg" alt={"Logotipo MINED"} width={100} height={100} className="my-3" />
-          <h1 className="text-center uppercase font-bold">generador de prompts educativos del MINED</h1>  
+          <h1 className="text-center uppercase font-bold">Generador de prompts educativos del MINED</h1>  
         </header>
         {/* <PromptGeneratorHeadingImage className="block w-full h-auto" /> */}
         {/* <Image className="object-cover" src={promptGeneratorHeadingImage} alt="Imagen de encabezado del generador de prompts" /> */}
@@ -32,7 +32,7 @@ export default function PromptGenerator() {
         <PromptForm />
         <footer>
           <div className="p-3 border-t border-slate-200 fixed w-full bottom-0 left-0 backdrop-blur">
-            <p className="justify-center text-center text-[12px] font-black uppercase">Celebrando nuestro XX Aniversario</p>
+            <p className="justify-center text-center text-[12px] font-black uppercase">Celebrando el Congreso Pedagogía 2025</p>
           </div>
         </footer>
       </div>
